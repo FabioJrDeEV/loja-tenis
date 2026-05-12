@@ -1,6 +1,6 @@
-import { ProductGrid } from "@/components/ProductGrid";
-import { SectionHero } from "@/components/SectionHero";
-import { maleProducts } from "@/data/products";
+import { ProductGrid } from "../../components/ProductGrid";
+import { SectionHero } from "../../components/SectionHero";
+import { maleProducts } from "../../data/products";
 
 export default function MasculinoPage() {
   return (

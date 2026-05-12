@@ -1,10 +1,4 @@
-type SectionHeroProps = {
-  eyebrow: string;
-  title: string;
-  description: string;
-};
-
-export function SectionHero({ eyebrow, title, description }: SectionHeroProps) {
+export function SectionHero({ eyebrow, title, description }) {
   return (
     <section className="bg-paper border-b border-line/30 py-24">
       <div className="container mx-auto px-6">

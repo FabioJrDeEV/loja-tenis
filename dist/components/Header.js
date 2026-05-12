@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { PromoStrip } from "@/components/PromoStrip";
+import { PromoStrip } from "./PromoStrip";
 
 const navItems = [
   { href: "/novidades", label: "Novidades" },

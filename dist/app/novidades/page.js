@@ -1,6 +1,6 @@
-import { ProductGrid } from "@/components/ProductGrid";
-import { SectionHero } from "@/components/SectionHero";
-import { featuredProducts } from "@/data/products";
+import { ProductGrid } from "../../components/ProductGrid";
+import { SectionHero } from "../../components/SectionHero";
+import { featuredProducts } from "../../data/products";
 
 export default function NovidadesPage() {
   return (

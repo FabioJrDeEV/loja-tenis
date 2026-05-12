@@ -1,4 +1,4 @@
-import { SectionHero } from "@/components/SectionHero";
+import { SectionHero } from "../../components/SectionHero";
 
 export default function ContatoPage() {
   return (
