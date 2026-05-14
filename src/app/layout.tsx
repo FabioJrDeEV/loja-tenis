@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Passo Fino | Loja de Sapatos",
+  title: "FJ STORE | Loja de Sapatos",
   description: "Loja de sapatos com novidades, modelos femininos e masculinos."
 };
 

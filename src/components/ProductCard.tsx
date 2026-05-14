@@ -1,0 +1,31 @@
+import type { Product } from "@/data/products";
+
+type ProductCardProps = {
+  product: Product;
+};
+
+export function ProductCard({ product }: ProductCardProps) {
+  return (
+    <article className="bg-surface border border-line/30 rounded-2xl shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full group">
+      <div 
+        className="product-placeholder bg-gradient-to-br from-surface via-white to-line/20 h-64 flex items-center justify-center relative overflow-hidden"
+        aria-label={`Espaço para imagem de ${product.name}`}
+      >
+        <span className="text-ink/40 text-sm font-medium">Imagem do produto</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      </div>
+      <div className="p-6">
+        <div className="flex justify-between items-start gap-3 mb-3">
+          <h2 className="text-ink font-bold text-lg leading-tight">{product.name}</h2>
+          {product.badge && (
+            <span className="bg-primary/10 text-primary text-xs font-bold px-2.5 py-1 rounded-full">
+              {product.badge}
+            </span>
+          )}
+        </div>
+        <p className="text-muted/70 text-sm leading-[1.6] min-h-[64px]">{product.description}</p>
+        <strong className="text-primary font-black text-xl block mt-4">{product.price}</strong>
+      </div>
+    </article>
+  );
+}
