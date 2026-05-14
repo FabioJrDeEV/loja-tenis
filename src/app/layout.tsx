@@ -2,23 +2,24 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "FJ STORE | Loja de Sapatos",
-  description: "Loja de sapatos com novidades, modelos femininos e masculinos."
-};
-
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html lang="pt-BR">
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

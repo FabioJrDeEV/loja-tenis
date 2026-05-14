@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { PromoStrip } from "@/components/PromoStrip";
+import { useCart } from "@/context/CartContext";
 
 const navItems = [
   { href: "/novidades", label: "Novidades" },
@@ -13,6 +14,7 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartItems } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-line/30">
@@ -23,22 +25,44 @@ export function Header() {
             <Link className="text-ink text-2xl font-black tracking-tight hover:text-primary transition-colors" href="/">
               PASSO FINO
             </Link>
-            <button
-              className="md:hidden p-2.5 rounded-xl border border-line/30 hover:bg-surface transition-colors"
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-controls="mainNavbar"
-              aria-expanded={isMenuOpen}
-              aria-label="Abrir menu"
-            >
-              <svg className="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <svg 
+                  className="w-6 h-6 text-ink" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M3 3h2l1.5 11m0 0L8 20l2-10H3Zm13 0h2l-1.5 11m0 0L16 20l2-10h-7Z" 
+                  />
+                </svg>
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                    {cartItems.length}
+                  </span>
                 )}
-              </svg>
-            </button>
+              </div>
+              <button
+                className="md:hidden p-2.5 rounded-xl border border-line/30 hover:bg-surface transition-colors"
+                type="button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-controls="mainNavbar"
+                aria-expanded={isMenuOpen}
+                aria-label="Abrir menu"
+              >
+                <svg className="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
             <div className="hidden md:flex gap-8">
               {navItems.map((item) => (
                 <Link

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type ProductCardProps = {
   product: {
@@ -10,30 +10,38 @@ type ProductCardProps = {
     description: string;
     badge?: string;
   };
+  onAddToCart?: (product: any) => void;
+  onRemoveFromCart?: (productId: number) => void;
+  isInCart?: boolean;
 };
 
-export function ProductCard({ product }: ProductCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+export function ProductCard({ product, onAddToCart, onRemoveFromCart, isInCart }: ProductCardProps) {
+  const [isAdded, setIsAdded] = useState(isInCart || false);
 
-  const handleAddToCart = () => {
-    setIsAddedToCart(true);
-    // Simula adição ao carrinho
-    console.log(`Produto ${product.name} adicionado ao carrinho`);
+  const handleCartAction = () => {
+    if (isAdded) {
+      if (onRemoveFromCart) {
+        onRemoveFromCart(product.id);
+      }
+      setIsAdded(false);
+    } else {
+      if (onAddToCart) {
+        onAddToCart(product);
+      }
+      setIsAdded(true);
+    }
   };
 
   return (
     <article 
       className="bg-surface border border-line/30 rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 overflow-hidden h-full group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div 
         className="product-placeholder bg-gradient-to-br from-surface via-white to-line/20 h-64 flex items-center justify-center relative overflow-hidden"
         aria-label={`Espaço para imagem de ${product.name}`}
       >
         <span className="text-ink/40 text-sm font-medium">Imagem do produto</span>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
       <div className="p-6">
         <div className="flex justify-between items-start gap-3 mb-3">
@@ -48,14 +56,14 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="flex justify-between items-center mt-4">
           <strong className="text-primary font-black text-xl">{product.price}</strong>
           <button 
-            onClick={handleAddToCart}
+            onClick={handleCartAction}
             className={`font-bold px-4 py-2 rounded-lg text-sm transition-all duration-300 ${
-              isAddedToCart 
+              isAdded 
                 ? "bg-mint text-ink" 
                 : "bg-ink text-paper hover:bg-primary"
             }`}
           >
-            {isAddedToCart ? "Adicionado!" : "Comprar"}
+            {isAdded ? "Remover" : "Comprar"}
           </button>
         </div>
       </div>
