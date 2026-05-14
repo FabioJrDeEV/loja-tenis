@@ -1,8 +1,9 @@
-import Link from "next/link";
+import { HeroSection } from "@/components/HeroSection";
+import { FeatureSection } from "@/components/FeatureSection";
+import { NewsletterSection } from "@/components/NewsletterSection";
 import { Carousel } from "@/components/Carousel";
 import { ProductGrid } from "@/components/ProductGrid";
 import { featuredProducts } from "@/data/products";
-import { HeroSection } from "@/components/HeroSection";
 
 export default function Home() {
   return (
@@ -10,8 +11,11 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection />
       
+      {/* Feature Section */}
+      <FeatureSection />
+      
       {/* Carousel Section */}
-      <section className="py-16 bg-surface border-b border-line/30">
+      <section className="py-16 bg-surface border-y border-line/30">
         <div className="container mx-auto px-6">
           <Carousel />
         </div>
@@ -25,27 +29,27 @@ export default function Home() {
             <h2 className="text-ink font-black text-[clamp(2rem,5vw,3.5rem)] tracking-tight">Explore o catálogo</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Link 
+            <a 
               className="bg-surface border border-line/30 rounded-3xl shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
               href="/novidades"
             >
               <span className="text-accent text-xs font-bold uppercase tracking-widest mb-12 block">Novidades</span>
               <strong className="text-ink text-2xl font-black leading-tight group-hover:text-primary transition-colors">Lançamentos exclusivos</strong>
-            </Link>
-            <Link 
+            </a>
+            <a 
               className="bg-surface border border-line/30 rounded-3xl shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
               href="/feminino"
             >
               <span className="text-accent text-xs font-bold uppercase tracking-widest mb-12 block">Feminino</span>
               <strong className="text-ink text-2xl font-black leading-tight group-hover:text-primary transition-colors">Elegância e conforto</strong>
-            </Link>
-            <Link 
-              className="bg-surface border border-line/30 rounded-3xl shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
+            </a>
+            <a 
+              className="bg-surface border border-line/30 rounded-3xl shadow-2 hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
               href="/masculino"
             >
               <span className="text-accent text-xs font-bold uppercase tracking-widest mb-12 block">Masculino</span>
               <strong className="text-ink text-2xl font-black leading-tight group-hover:text-primary transition-colors">Estilo urbano</strong>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -60,6 +64,9 @@ export default function Home() {
           <ProductGrid products={featuredProducts} />
         </div>
       </section>
+      
+      {/* Newsletter Section */}
+      <NewsletterSection />
     </>
   );
 }

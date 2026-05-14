@@ -36,7 +36,7 @@ export function Header() {
                 </Link>
               ))}
               {/* Cart Icon */}
-              <div className="relative">
+              <div className="relative ml-4">
                 <svg 
                   className="w-6 h-6 text-ink cursor-pointer hover:text-primary transition-colors" 
                   fill="none" 
@@ -81,10 +81,11 @@ export function Header() {
                       <Link
                         className="block text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
                         href={item.href}
+                        onClick={() => setIsMenuOpen(false)}
                       >
                         {item.label}
                       </Link>
-                    </</li>
+                    </li>
                   ))}
                 </ul>
               </div>

@@ -3,6 +3,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CategoryBar } from "@/components/CategoryBar";
 import type { ReactNode } from "react";
 
 export default function Layout({
@@ -15,6 +16,7 @@ export default function Layout({
       <body className="min-h-screen flex flex-col">
         <CartProvider>
           <Header />
+          <CategoryBar />
           <main className="flex-grow">{children}</main>
           <Footer />
         </CartProvider>
