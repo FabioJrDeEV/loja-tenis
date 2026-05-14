@@ -44,7 +44,7 @@ export default function Home() {
               <strong className="text-ink text-2xl font-black leading-tight group-hover:text-primary transition-colors">Elegância e conforto</strong>
             </a>
             <a 
-              className="bg-surface border border-line/30 rounded-3xl shadow-2 hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
+              className="bg-surface border border-line/30 rounded-3xl shadow-soft hover:shadow-medium hover:-translate-y-1 transition-all block min-h-[220px] p-8 group"
               href="/masculino"
             >
               <span className="text-accent text-xs font-bold uppercase tracking-widest mb-12 block">Masculino</span>
