@@ -25,10 +25,20 @@ export function Header() {
             <Link className="text-ink text-2xl font-black tracking-tight hover:text-primary transition-colors" href="/">
               PASSO FINO
             </Link>
-            <div className="flex items-center gap-4">
+            <div className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link
+                  className="text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              {/* Cart Icon */}
               <div className="relative">
                 <svg 
-                  className="w-6 h-6 text-ink" 
+                  className="w-6 h-6 text-ink cursor-pointer hover:text-primary transition-colors" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -46,34 +56,23 @@ export function Header() {
                   </span>
                 )}
               </div>
-              <button
-                className="md:hidden p-2.5 rounded-xl border border-line/30 hover:bg-surface transition-colors"
-                type="button"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-controls="mainNavbar"
-                aria-expanded={isMenuOpen}
-                aria-label="Abrir menu"
-              >
-                <svg className="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
             </div>
-            <div className="hidden md:flex gap-8">
-              {navItems.map((item) => (
-                <Link
-                  className="text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
-                  href={item.href}
-                  key={item.href}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
+            <button
+              className="md:hidden p-2.5 rounded-xl border border-line/30 hover:bg-surface transition-colors"
+              type="button"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-controls="mainNavbar"
+              aria-expanded={isMenuOpen}
+              aria-label="Abrir menu"
+            >
+              <svg className="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
             {isMenuOpen && (
               <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-line/30 p-6 shadow-medium">
                 <ul className="flex flex-col gap-4">
@@ -82,11 +81,10 @@ export function Header() {
                       <Link
                         className="block text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
                         href={item.href}
-                        onClick={() => setIsMenuOpen(false)}
                       >
                         {item.label}
                       </Link>
-                    </li>
+                    </</li>
                   ))}
                 </ul>
               </div>
