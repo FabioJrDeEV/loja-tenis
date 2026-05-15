@@ -1,26 +1,60 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import type { Product } from "@/data/products";
 
+export type CartItem = Product & {
+  quantity: number;
+};
+
 type CartContextType = {
-  cartItems: Product[];
+  cartItems: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
+  clearCart: () => void;
   isInCart: (productId: number) => boolean;
+  totalItems: number;
+  totalPrice: number;
 };
 
 const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("passo-fino-cart");
+    if (savedCart) {
+      try {
+        setCartItems(JSON.parse(savedCart));
+      } catch (e) {
+        console.error("Failed to parse cart", e);
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save cart to localStorage on change
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem("passo-fino-cart", JSON.stringify(cartItems));
+    }
+  }, [cartItems, isLoaded]);
 
   const addToCart = (product: Product) => {
     setCartItems(prev => {
-      if (!prev.find(item => item.id === product.id)) {
-        return [...prev, product];
+      const existingItem = prev.find(item => item.id === product.id);
+      if (existingItem) {
+        return prev.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: item.quantity + 1 } 
+            : item
+        );
       }
-      return prev;
+      return [...prev, { ...product, quantity: 1 }];
     });
   };
 
@@ -28,12 +62,42 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCartItems(prev => prev.filter(item => item.id !== productId));
   };
 
+  const updateQuantity = (productId: number, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    setCartItems(prev => 
+      prev.map(item => 
+        item.id === productId ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const clearCart = () => setCartItems([]);
+
   const isInCart = (productId: number) => {
     return cartItems.some(item => item.id === productId);
   };
 
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  
+  const totalPrice = cartItems.reduce((acc, item) => {
+    const price = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
+    return acc + (price * item.quantity);
+  }, 0);
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, isInCart }}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addToCart, 
+      removeFromCart, 
+      updateQuantity,
+      clearCart,
+      isInCart, 
+      totalItems,
+      totalPrice 
+    }}>
       {children}
     </CartContext.Provider>
   );
