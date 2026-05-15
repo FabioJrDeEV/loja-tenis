@@ -13,6 +13,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { cartItems, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
   const [mounted, setMounted] = useState(false);
 
+  console.log("CartDrawer render. Items:", cartItems);
+
   useEffect(() => {
     setMounted(true);
   }, []);

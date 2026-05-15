@@ -42,6 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <button 
             onClick={(e) => {
               e.preventDefault();
+              console.log("Adding to cart:", product);
               addToCart(product);
             }}
             className={`font-black px-6 py-3 rounded-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 ${

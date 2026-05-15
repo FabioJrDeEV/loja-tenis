@@ -82,8 +82,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   
   const totalPrice = cartItems.reduce((acc, item) => {
-    const price = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
-    return acc + (price * item.quantity);
+    // Remove tudo que não é número ou vírgula/ponto para garantir a conversão correta
+    const cleanPrice = item.price.replace(/[^\d,.]/g, "").replace(",", ".");
+    const priceValue = parseFloat(cleanPrice);
+    return acc + (isNaN(priceValue) ? 0 : priceValue * item.quantity);
   }, 0);
 
   return (
