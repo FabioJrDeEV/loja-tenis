@@ -1,69 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import type { Product } from "@/data/products";
+import { ShoppingCart, Check, ArrowRight } from "lucide-react";
 
 type ProductCardProps = {
-  product: {
-    id: number;
-    name: string;
-    price: string;
-    description: string;
-    badge?: string;
-  };
-  onAddToCart?: (product: any) => void;
-  onRemoveFromCart?: (productId: number) => void;
-  isInCart?: boolean;
+  product: Product;
 };
 
-export function ProductCard({ product, onAddToCart, onRemoveFromCart, isInCart }: ProductCardProps) {
-  const [isAdded, setIsAdded] = useState(isInCart || false);
-
-  const handleCartAction = () => {
-    if (isAdded) {
-      if (onRemoveFromCart) {
-        onRemoveFromCart(product.id);
-      }
-      setIsAdded(false);
-    } else {
-      if (onAddToCart) {
-        onAddToCart(product);
-      }
-      setIsAdded(true);
-    }
-  };
+export function ProductCard({ product }: ProductCardProps) {
+  const { addToCart, isInCart } = useCart();
+  const added = isInCart(product.id);
 
   return (
     <article 
-      className="bg-surface border border-line/30 rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 overflow-hidden h-full group"
+      className="group bg-white border border-line/50 rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-strong hover:-translate-y-1"
     >
-      <div 
-        className="product-placeholder bg-gradient-to-br from-surface via-white to-line/20 h-64 flex items-center justify-center relative overflow-hidden"
-        aria-label={`Espaço para imagem de ${product.name}`}
-      >
-        <span className="text-ink/40 text-sm font-medium">Imagem do produto</span>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-      </div>
-      <div className="p-6">
-        <div className="flex justify-between items-start gap-3 mb-3">
-          <h2 className="text-ink font-bold text-lg leading-tight">{product.name}</h2>
-          {product.badge && (
-            <span className="bg-primary/10 text-primary text-xs font-bold px-2.5 py-1 rounded-full animate-pulse">
+      {/* Image Container */}
+      <div className="relative aspect-[4/5] overflow-hidden bg-surface">
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-lavender/50 to-surface flex items-center justify-center transition-transform duration-700 group-hover:scale-110"
+        >
+          {/* Visual Placeholder */}
+          <div className="w-32 h-32 rounded-full bg-white/50 blur-3xl" />
+          <span className="absolute text-ink/20 font-black text-6xl rotate-[-20deg] select-none tracking-tighter">
+            PASSO
+          </span>
+        </div>
+        
+        {/* Badges */}
+        {product.badge && (
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-primary text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-medium">
               {product.badge}
             </span>
-          )}
-        </div>
-        <p className="text-muted/70 text-sm leading-[1.6] min-h-[64px]">{product.description}</p>
-        <div className="flex justify-between items-center mt-4">
-          <strong className="text-primary font-black text-xl">{product.price}</strong>
+          </div>
+        )}
+
+        {/* Quick Add Overlay */}
+        <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
           <button 
-            onClick={handleCartAction}
-            className={`font-bold px-4 py-2 rounded-lg text-sm transition-all duration-300 ${
-              isAdded 
-                ? "bg-mint text-ink" 
-                : "bg-ink text-paper hover:bg-primary"
-            }`}
+            onClick={() => addToCart(product)}
+            className="bg-white text-ink font-black px-6 py-3 rounded-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-primary hover:text-white"
           >
-            {isAdded ? "Remover" : "Comprar"}
+            {added ? (
+              <>
+                <Check className="w-4 h-4" />
+                Adicionado
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4" />
+                Adicionar
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Info Container */}
+      <div className="p-6">
+        <div className="mb-4">
+          <p className="text-[10px] text-primary font-black uppercase tracking-[0.2em] mb-1">
+            {product.category}
+          </p>
+          <h3 className="text-ink font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-1">
+            {product.name}
+          </h3>
+        </div>
+        
+        <p className="text-muted text-sm leading-relaxed mb-6 line-clamp-2 min-h-[40px]">
+          {product.description}
+        </p>
+
+        <div className="flex justify-between items-end">
+          <div className="flex flex-col">
+            <span className="text-muted text-[10px] uppercase font-bold tracking-wider">Preço</span>
+            <strong className="text-ink font-black text-2xl tracking-tight">{product.price}</strong>
+          </div>
+          
+          <button className="p-3 bg-surface rounded-xl text-ink hover:bg-ink hover:text-white transition-all duration-300">
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </div>
