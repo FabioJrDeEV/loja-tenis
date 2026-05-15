@@ -44,7 +44,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       
       {/* Container do Carrinho - Responsivo: Dropdown no mobile, Sidebar no desktop */}
       <aside 
-        className={`fixed z-[70] bg-white shadow-strong transition-all duration-500 ease-in-out border-line/20
+        className={`fixed z-[100] bg-white shadow-strong transition-all duration-500 ease-in-out border-line/20
           ${!isOpen ? "pointer-events-none invisible" : "visible"}
           
           ${/* Mobile: Top-down dropdown (default) */ ""}
