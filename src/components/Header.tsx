@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { PromoStrip } from "@/components/PromoStrip";
 import { useCart } from "@/context/CartContext";
+import { CartDrawer } from "@/components/CartDrawer";
+import { ShoppingBag, Menu, X, Search, User } from "lucide-react";
 
 const navItems = [
   { href: "/novidades", label: "Novidades" },
@@ -14,85 +16,103 @@ const navItems = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { cartItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { totalItems } = useCart();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-line/30">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-line/30">
       <PromoStrip />
-      <nav className="min-h-[72px]">
-        <div className="container mx-auto px-6">
+      <nav className="h-20">
+        <div className="container mx-auto px-6 h-full">
           <div className="flex items-center justify-between h-full">
-            <Link className="text-ink text-2xl font-black tracking-tight hover:text-primary transition-colors" href="/">
-              PASSO FINO
+            {/* Logo */}
+            <Link 
+              className="text-ink text-2xl font-black tracking-tighter hover:text-primary transition-all duration-300 flex items-center gap-2 group" 
+              href="/"
+            >
+              <div className="w-8 h-8 bg-ink group-hover:bg-primary rounded-lg flex items-center justify-center transition-colors">
+                <span className="text-white text-xs">PF</span>
+              </div>
+              <span>PASSO FINO</span>
             </Link>
-            <div className="hidden md:flex gap-8">
+
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center gap-10">
               {navItems.map((item) => (
                 <Link
-                  className="text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
+                  className="text-ink/60 font-bold hover:text-ink transition-colors duration-300 text-sm uppercase tracking-widest relative group"
                   href={item.href}
                   key={item.href}
                 >
                   {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
-              {/* Cart Icon */}
-              <div className="relative ml-4">
-                <svg 
-                  className="w-6 h-6 text-ink cursor-pointer hover:text-primary transition-colors" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M3 3h2l1.5 11m0 0L8 20l2-10H3Zm13 0h2l-1.5 11m0 0L16 20l2-10h-7Z" 
-                  />
-                </svg>
-                {cartItems.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {cartItems.length}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2 sm:gap-4">
+              <button className="p-2.5 text-ink/70 hover:text-primary transition-colors hidden sm:block">
+                <Search className="w-5 h-5" />
+              </button>
+              <button className="p-2.5 text-ink/70 hover:text-primary transition-colors hidden sm:block">
+                <User className="w-5 h-5" />
+              </button>
+              
+              <button 
+                onClick={() => setIsCartOpen(true)}
+                className="relative p-2.5 bg-ink text-white rounded-full hover:bg-primary transition-all duration-300 shadow-soft hover:shadow-medium group"
+              >
+                <ShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-black ring-2 ring-white animate-fade-in">
+                    {totalItems}
                   </span>
                 )}
-              </div>
+              </button>
+
+              <button
+                className="lg:hidden p-2.5 text-ink"
+                type="button"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Abrir menu"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
-            <button
-              className="md:hidden p-2.5 rounded-xl border border-line/30 hover:bg-surface transition-colors"
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-controls="mainNavbar"
-              aria-expanded={isMenuOpen}
-              aria-label="Abrir menu"
-            >
-              <svg className="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-            {isMenuOpen && (
-              <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-line/30 p-6 shadow-medium">
-                <ul className="flex flex-col gap-4">
-                  {navItems.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        className="block text-ink/70 font-medium px-2 py-2 hover:text-primary transition-colors duration-300 text-sm tracking-wide"
-                        href={item.href}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <div 
+        className={`lg:hidden fixed inset-0 top-[112px] bg-white z-40 transition-all duration-500 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+      >
+        <div className="p-8 flex flex-col gap-8 h-full overflow-y-auto">
+          {navItems.map((item) => (
+            <Link
+              className="text-3xl font-black text-ink hover:text-primary transition-colors"
+              href={item.href}
+              key={item.href}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="mt-auto pt-8 border-t border-line/30 space-y-6">
+            <div className="flex items-center gap-4 text-muted">
+              <Search className="w-6 h-6" />
+              <span className="font-bold text-lg">Pesquisar</span>
+            </div>
+            <div className="flex items-center gap-4 text-muted">
+              <User className="w-6 h-6" />
+              <span className="font-bold text-lg">Minha Conta</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 }
