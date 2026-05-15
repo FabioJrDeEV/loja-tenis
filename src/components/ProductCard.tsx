@@ -40,13 +40,18 @@ export function ProductCard({ product }: ProductCardProps) {
         {/* Quick Add Overlay */}
         <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
           <button 
-            onClick={() => addToCart(product)}
-            className="bg-white text-ink font-black px-6 py-3 rounded-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-primary hover:text-white"
+            onClick={(e) => {
+              e.preventDefault();
+              addToCart(product);
+            }}
+            className={`font-black px-6 py-3 rounded-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 ${
+              added ? "bg-mint text-ink" : "bg-white text-ink hover:bg-primary hover:text-white"
+            }`}
           >
             {added ? (
               <>
                 <Check className="w-4 h-4" />
-                Adicionado
+                No Carrinho
               </>
             ) : (
               <>

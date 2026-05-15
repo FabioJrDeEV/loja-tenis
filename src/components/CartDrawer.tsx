@@ -38,11 +38,12 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       {/* Container do Carrinho - Responsivo: Dropdown no mobile, Sidebar no desktop */}
       <aside 
         className={`fixed z-[70] bg-white shadow-strong transition-all duration-500 ease-in-out border-line/20
+          ${!isOpen ? "pointer-events-none invisible" : "visible"}
           ${/* Mobile: Top-down dropdown */ ""}
           top-0 left-0 w-full max-h-[90vh] md:max-h-screen
           ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
           
-          ${/* Desktop: Sidebar from right (mantendo o pedido de 'aparecer para baixo' no mobile) */ ""}
+          ${/* Desktop: Sidebar from right */ ""}
           md:top-0 md:right-0 md:left-auto md:w-[450px] md:h-full md:border-l
           md:translate-y-0
           ${isOpen ? "md:translate-x-0" : "md:translate-x-full"}

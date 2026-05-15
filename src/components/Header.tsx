@@ -17,10 +17,15 @@ const navItems = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { totalItems } = useCart();
+  const { totalItems, cartItems } = useCart();
+
+  // Opcional: Abrir o carrinho automaticamente quando o primeiro item for adicionado
+  // useEffect(() => {
+  //   if (totalItems > 0) setIsCartOpen(true);
+  // }, [totalItems]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-line/30">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-line/30 w-full overflow-x-clip">
       <PromoStrip />
       <nav className="h-20">
         <div className="container mx-auto px-6 h-full">
