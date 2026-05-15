@@ -57,9 +57,9 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           ${isOpen ? "md:translate-x-0" : "md:translate-x-full"}
         `}
       >
-        <div className="flex flex-col h-full max-h-screen overflow-hidden">
+        <div className="flex flex-col h-full">
           {/* Header do Carrinho */}
-          <div className="flex items-center justify-between p-6 md:p-8 border-b border-line/30 bg-white sticky top-0 z-10">
+          <div className="flex-shrink-0 flex items-center justify-between p-6 md:p-8 border-b border-line/30 bg-white">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
                 <ShoppingBag className="w-6 h-6 text-primary" />
@@ -79,7 +79,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </div>
 
           {/* Lista de Itens - Scrollable Area */}
-          <div className="flex-grow overflow-y-auto p-6 md:p-8 space-y-8 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto p-6 md:p-8 scrollbar-hide">
             {cartItems.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-6 py-20">
                 <div className="w-24 h-24 bg-surface rounded-full flex items-center justify-center animate-bounce">
@@ -99,7 +99,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 </button>
               </div>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-8 pb-10">
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-5 md:gap-6 group animate-fade-in">
                     {/* Imagem Placeholder com Badge de Quantidade */}
@@ -150,7 +150,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         <div className="text-right">
                           <p className="text-muted text-[10px] font-bold uppercase">Subtotal</p>
                           <span className="text-ink font-black text-sm md:text-base">
-                            R$ {(parseFloat(item.price.replace("R$ ", "").replace(",", ".")) * item.quantity).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                            R$ {(parseFloat(item.price.replace(/[^\d,.]/g, "").replace(",", ".")) * item.quantity).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                           </span>
                         </div>
                       </div>
@@ -161,9 +161,9 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             )}
           </div>
 
-          {/* Footer do Carrinho - Fixo na parte inferior */}
+          {/* Footer do Carrinho - Fixo na parte inferior da coluna flex */}
           {cartItems.length > 0 && (
-            <div className="p-6 md:p-8 border-t border-line/30 bg-white space-y-6 shadow-[0_-10px_40px_rgba(0,0,0,0.04)]">
+            <div className="flex-shrink-0 p-6 md:p-8 border-t border-line/30 bg-white space-y-6 shadow-[0_-10px_40px_rgba(0,0,0,0.04)]">
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-muted font-bold text-xs uppercase tracking-widest">
                   <span>Itens ({totalItems})</span>
