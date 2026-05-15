@@ -36,9 +36,9 @@ export function Header() {
               href="/"
             >
               <div className="w-8 h-8 bg-ink group-hover:bg-primary rounded-lg flex items-center justify-center transition-colors">
-                <span className="text-white text-xs">PF</span>
+                <span className="text-white text-xs">FJ</span>
               </div>
-              <span>PASSO FINO</span>
+              <span>FJ STORE</span>
             </Link>
 
             {/* Desktop Nav */}
@@ -60,9 +60,15 @@ export function Header() {
               <button className="p-2.5 text-ink/70 hover:text-primary transition-colors hidden sm:block">
                 <Search className="w-5 h-5" />
               </button>
-              <button className="p-2.5 text-ink/70 hover:text-primary transition-colors hidden sm:block">
+              
+              <Link 
+                href="/signup" 
+                className="p-2.5 text-ink/70 hover:text-primary transition-colors hidden sm:flex items-center gap-2 group"
+                title="Minha Conta"
+              >
                 <User className="w-5 h-5" />
-              </button>
+                <span className="text-xs font-black uppercase tracking-widest hidden xl:block">Entrar</span>
+              </Link>
               
               <button 
                 onClick={() => setIsCartOpen(true)}
@@ -105,13 +111,21 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-auto pt-8 border-t border-line/30 space-y-6">
+            <Link 
+              href="/signup" 
+              className="flex items-center gap-4 text-ink hover:text-primary transition-colors group"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="w-12 h-12 bg-surface rounded-2xl flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                <User className="w-6 h-6" />
+              </div>
+              <span className="font-black text-xl">Minha Conta</span>
+            </Link>
             <div className="flex items-center gap-4 text-muted">
-              <Search className="w-6 h-6" />
-              <span className="font-bold text-lg">Pesquisar</span>
-            </div>
-            <div className="flex items-center gap-4 text-muted">
-              <User className="w-6 h-6" />
-              <span className="font-bold text-lg">Minha Conta</span>
+              <div className="w-12 h-12 bg-surface rounded-2xl flex items-center justify-center">
+                <Search className="w-6 h-6" />
+              </div>
+              <span className="font-black text-xl">Pesquisar</span>
             </div>
           </div>
         </div>
