@@ -2,7 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import { X, Minus, Plus, ShoppingBag, Trash2, ArrowRight } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type CartDrawerProps = {
   isOpen: boolean;
@@ -11,6 +11,11 @@ type CartDrawerProps = {
 
 export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { cartItems, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Bloquear scroll do body quando o carrinho estiver aberto
   useEffect(() => {
@@ -23,6 +28,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
+
+  if (!mounted) return null;
 
   return (
     <>
