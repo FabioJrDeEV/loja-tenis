@@ -29,7 +29,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const savedCart = localStorage.getItem("passo-fino-cart");
     if (savedCart) {
       try {
-        setCartItems(JSON.parse(savedCart));
+        const parsed = JSON.parse(savedCart);
+        setCartItems(parsed);
       } catch (e) {
         console.error("Failed to parse cart", e);
       }
@@ -48,12 +49,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCartItems(prev => {
       const existingItem = prev.find(item => item.id === product.id);
       if (existingItem) {
-        // Se já existe, removemos (comportamento de toggle solicitado)
         return prev.filter(item => item.id !== product.id);
       }
-      // Se não existe, adicionamos
-      const newItems = [...prev, { ...product, quantity: 1 }];
-      return newItems;
+      return [...prev, { ...product, quantity: 1 }];
     });
   };
 

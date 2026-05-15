@@ -25,7 +25,7 @@ export function Header() {
   // }, [totalItems]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-line/30 w-full overflow-x-clip">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-line/30 w-full">
       <PromoStrip />
       <nav className="h-20">
         <div className="container mx-auto px-6 h-full">
