@@ -60,9 +60,6 @@ src/
 ## 📦 Scripts Disponíveis
 
 - `npm run dev`: Inicia o servidor de desenvolvimento.
-- `npm run build`: Cria a versão de produção da aplicação.
-- `npm run start`: Inicia o servidor de produção.
-- `npm run lint`: Executa a verificação do Linter.
 
 ---
 
