@@ -1,4 +1,6 @@
 import { Carousel } from "@/components/Carousel";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { ProductGrid } from "@/components/ProductGrid";
 import { featuredProducts } from "@/data/products";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
@@ -7,6 +9,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="space-y-20 pb-20">
+      <Header />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
         {/* Background Elements */}
@@ -124,14 +127,14 @@ export default function Home() {
       <section className="bg-ink py-24 text-white overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-mint" />
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-2 gap-16">
             <div className="space-y-4">
               <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
                 <Truck className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-black tracking-tight">Frete Expresso</h3>
+              <h3 className="text-2xl font-black tracking-tight">Entrega para todo o Brasil</h3>
               <p className="text-muted/80 leading-relaxed">
-                Logística otimizada para garantir que seu pedido chegue no menor tempo possível, em qualquer lugar do país.
+               Enviamos seus pedidos com segurança através dos Correios, garantindo cobertura nacional e acompanhamento da entrega.
               </p>
             </div>
             <div className="space-y-4">
@@ -140,21 +143,13 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-black tracking-tight">Garantia Premium</h3>
               <p className="text-muted/80 leading-relaxed">
-                Não gostou ou não serviu? Oferecemos 30 dias para troca ou devolução sem burocracia e com custo zero.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
-                <Star className="w-8 h-8 text-accent" />
-              </div>
-              <h3 className="text-2xl font-black tracking-tight">Clube de Fidelidade</h3>
-              <p className="text-muted/80 leading-relaxed">
-                Ganhe pontos em cada compra e troque por descontos exclusivos ou acesso antecipado a coleções limitadas.
+                Não gostou ou não serviu? Oferecemos 7 dias para troca ou devolução sem burocracia e com custo zero.
               </p>
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -57,7 +57,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           ${isOpen ? "md:translate-x-0" : "md:translate-x-full"}
         `}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col">
           {/* Header do Carrinho - Padding reduzido para ganhar espaço */}
           <div className="flex-shrink-0 flex items-center justify-between p-5 md:p-6 border-b border-line/30 bg-white">
             <div className="flex items-center gap-3">
@@ -79,7 +79,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </div>
 
           {/* Lista de Itens - Scrollable Area - Padding otimizado */}
-          <div className="flex-1 overflow-y-auto p-5 md:p-8 scrollbar-hide">
+          <div className="overflow-y-auto p-5 md:p-8 scrollbar-hide bg-white">
             {cartItems.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-6 py-20">
                 <div className="w-20 h-20 bg-surface rounded-full flex items-center justify-center animate-bounce">
@@ -99,7 +99,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 </button>
               </div>
             ) : (
-              <div className="space-y-6 md:space-y-8 pb-6">
+              <div className="space-y-6 md:space-y-8 pb-6 ">
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-4 md:gap-6 group animate-fade-in">
                     {/* Imagem Placeholder com Badge de Quantidade */}

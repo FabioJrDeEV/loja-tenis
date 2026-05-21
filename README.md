@@ -1,12 +1,14 @@
-# Loja Sapatos 👟
+# Loja de Sapatos 👟
 
-Uma plataforma de e-commerce moderna e elegante dedicada à venda de calçados de alta qualidade. Desenvolvida com as tecnologias mais recentes do ecossistema React/Next.js, focada em performance, design responsivo e experiência do usuário.
+Uma plataforma de e-commerce moderna para venda de calçados, desenvolvida com Next.js, TypeScript e Tailwind CSS.
+
+🚧 Projeto atualmente em desenvolvimento.
 
 ## 🚀 Tecnologias Utilizadas
 
 Este projeto foi construído utilizando as seguintes tecnologias:
 
-- **Next.js 16**: Framework React com suporte a App Router para rotas otimizadas e renderização híbrida.
+- **Next.js**: Framework React com suporte a App Router para rotas otimizadas e renderização híbrida.
 - **TypeScript**: Tipagem estática para maior segurança e produtividade no desenvolvimento.
 - **Tailwind CSS**: Framework CSS utilitário para um design moderno, rápido e totalmente responsivo.
 - **Lucide React**: Biblioteca de ícones leves e elegantes.
@@ -30,7 +32,7 @@ src/
 ├── app/              # Rotas, páginas e layouts (App Router)
 ├── components/       # Componentes de interface reutilizáveis
 ├── context/          # Contextos do React (Estado Global)
-├── data/             # Dados estáticos e mockups (Produtos)
+├── data/             # Dados estáticos e mockados dos produtos
 ├── schemas/          # Schemas de validação Zod
 └── globals.css       # Estilos globais e configurações Tailwind
 ```
@@ -64,4 +66,4 @@ src/
 
 ---
 
-Desenvolvido por [Seu Nome/Empresa].
+Desenvolvido por Fábio Júnior.

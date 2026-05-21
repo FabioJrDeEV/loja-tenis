@@ -10,9 +10,13 @@
     "build:js": "tsc -p tsconfig.build-js.json && cp src/app/globals.css dir/app/globals.css"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "lucide-react": "^1.16.0",
     "next": "^16.0.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.75.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^24.10.0",

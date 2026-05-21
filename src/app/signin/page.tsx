@@ -16,29 +16,11 @@ export default function SignUpPage() {
             <div className="w-12 h-12 bg-ink rounded-xl flex items-center justify-center mx-auto shadow-medium">
               <span className="text-white text-lg font-black italic">FJ</span>
             </div>
-            <h1 className="text-ink font-black text-3xl tracking-tighter">Crie sua conta</h1>
-            <p className="text-muted text-xs font-medium">
-              Junte-se à nossa comunidade exclusiva.
-            </p>
+            <h1 className="text-ink font-black text-3xl tracking-tighter">Faça login</h1>
           </div>
 
           <form className="space-y-4">
             <div className="space-y-3">
-              {/* Campo: Nome */}
-              <div className="space-y-1">
-                <label htmlFor="name" className="text-ink font-black text-[10px] uppercase tracking-widest ml-1">
-                  Nome Completo
-                </label>
-                <div className="relative group">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted/40 group-focus-within:text-primary transition-colors" />
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Seu nome"
-                    className="w-full bg-surface border border-line/50 rounded-xl py-3 pl-12 pr-4 text-xs focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all"
-                  />
-                </div>
-              </div>
 
               {/* Campo: E-mail */}
               <div className="space-y-1">
@@ -71,22 +53,7 @@ export default function SignUpPage() {
                   />
                 </div>
               </div>
-
-              {/* Campo: Confirmar Senha */}
-              <div className="space-y-1">
-                <label htmlFor="passwordConfirmation" className="text-ink font-black text-[10px] uppercase tracking-widest ml-1">
-                  Confirmar Senha
-                </label>
-                <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted/40 group-focus-within:text-primary transition-colors" />
-                  <input
-                    type="password"
-                    id="passwordConfirmation"
-                    placeholder="••••••••"
-                    className="w-full bg-surface border border-line/50 rounded-xl py-3 pl-12 pr-4 text-xs focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all"
-                  />
-                </div>
-              </div>
+             
             </div>
 
             <div className="pt-2 space-y-4">
@@ -94,7 +61,7 @@ export default function SignUpPage() {
                 type="submit"
                 className="group w-full bg-ink text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary transition-all duration-500 shadow-medium hover:shadow-primary/30 active:scale-[0.98] text-sm"
               >
-                Criar Minha Conta
+                Entrar
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -107,9 +74,9 @@ export default function SignUpPage() {
 
           <div className="mt-6 pt-6 border-t border-line/30 text-center">
             <p className="text-muted text-xs font-medium">
-              Já tem uma conta?{" "}
-              <Link href="/signin" className="text-primary font-black hover:underline underline-offset-4">
-                Faça login
+              Não possui uma conta?{" "}
+              <Link href="/signup" className="text-primary font-black hover:underline underline-offset-4">
+                Faça cadastro
               </Link>
             </p>
           </div>

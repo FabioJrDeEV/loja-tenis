@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Facebook, Twitter, Youtube, ArrowUp, Send } from "lucide-react";
+import { ArrowUp, Send } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -17,22 +17,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-8">
             <Link href="/" className="text-2xl font-black tracking-tighter">
-              PASSO FINO
+              FJ STORE
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs">
               Elevando o conceito de calçados premium desde 2018. Qualidade, conforto e design exclusivo em cada par.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white">
-                <Facebook className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* Links Columns */}
@@ -49,10 +38,9 @@ export function Footer() {
           <div>
             <h4 className="font-black text-lg mb-8">Suporte</h4>
             <ul className="space-y-4 text-white/40 text-sm font-medium">
-              <li><Link href="#" className="hover:text-primary transition-colors">Central de Ajuda</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors">Trocas e Devoluções</Link></li>
               <li><Link href="#" className="hover:text-primary transition-colors">Rastrear Pedido</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Termos e Privacidade</Link></li>
+              <li><Link href="#" className="hover:text-primary transition-colors">Atendimento via WhatsApp</Link></li>
             </ul>
           </div>
 
@@ -66,7 +54,7 @@ export function Footer() {
                 placeholder="Seu melhor e-mail" 
                 className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-6 text-sm focus:outline-none focus:border-primary transition-colors"
               />
-              <button className="absolute right-2 top-2 p-2 bg-primary rounded-lg hover:bg-primary-dark transition-colors">
+              <button className="absolute right-2 top-3 p-2 bg-primary rounded-lg hover:bg-primary-dark transition-colors">
                 <Send className="w-4 h-4" />
               </button>
             </form>
@@ -76,7 +64,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-white/20 text-[10px] uppercase tracking-[0.2em] font-black">
-            © 2026 PASSO FINO. Todos os direitos reservados.
+            © 2026 FJ STORE. Todos os direitos reservados.
           </p>
           <div className="flex gap-8 opacity-20 grayscale">
              {/* Payment Icons Placeholder */}

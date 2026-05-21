@@ -13,9 +13,7 @@ export default function Layout({
     <html lang="pt-BR">
       <body className="min-h-screen flex flex-col">
         <CartProvider>
-          <Header />
           <main className="flex-grow overflow-x-hidden">{children}</main>
-          <Footer />
         </CartProvider>
       </body>
     </html>
