@@ -41,7 +41,7 @@ src/
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/loja-sapatos.git
+   git clone https://github.com/FabioJrDeEV/loja-sapatos.git
    ```
 
 2. **Instale as dependências:**
